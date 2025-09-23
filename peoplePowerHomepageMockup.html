@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>People Power Movement</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; background: #f8f9fa; color: #222; }
+
+  /* Navbar */
+  header {
+    background: #111;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    color: #ff3333;
+  }
+
+  /* Center links */
+  nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4.5rem;
+  }
+
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+    color: #ff3333;
+  }
+
+  /* Right side icons */
+  .right-icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .right-icons a {
+    display: flex;
+    align-items: center;
+  }
+
+  .right-icons svg {
+    width: 24px;
+    height: 24px;
+    stroke: #fff;
+    transition: stroke 0.3s;
+  }
+
+  .right-icons a:hover svg {
+    stroke: #ff3333;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: #222;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      transform: translateX(0);
+    }
+
+    nav.active {
+      display: flex;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+
+/* Hero */
+.hero {
+  position: relative;
+  background: url('https://scontent.fmnl25-4.fna.fbcdn.net/v/t39.30808-6/552583993_10238394812545675_1688375359035208018_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=VjfVBZaDjKoQ7kNvwHuIR_O&_nc_oc=AdnK47z37EpabdldgvBs_-wE_Wp0MxqG9_mrM46OkaezPiq0to6gHsGpCt_0MJ5uueU&_nc_zt=23&_nc_ht=scontent.fmnl25-4.fna&_nc_gid=AffH-AgtzYM2cojMTCEX7g&oh=00_AfYXj2MwwX_FJeFHzcxUggz9neKK5hCBIDil9U71Gsu0IA&oe=68D88208') top center/cover no-repeat;
+  color: #fff;
+  text-align: center;   /* center-aligns text */
+  padding: 6rem 2rem;   /* controls vertical spacing */
+  overflow: hidden;
+}
+
+/* Dark overlay */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 0;
+}
+
+/* Text stays above overlay */
+.hero h2,
+.hero p {
+  position: relative;
+  z-index: 1;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Hero text styling */
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #b9212d; /* accent red */
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: auto;
+  color: #fff;
+}
+
+/* Sections */
+section {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+h2.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #111;
+}
+
+
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      border-left: 6px solid #ff3333;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-content { padding: 1rem; }
+    .card h3 { margin-bottom: 0.5rem; color: #ff3333; }
+    .card small { color: #666; display: block; margin-bottom: 0.5rem; }
+
+    /* Alternating rows */
+    .alt-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .alt-row img {
+      width: 50%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .alt-text { width: 50%; }
+    .alt-text h3 { color: #ff3333; margin-bottom: 0.5rem; }
+    .alt-row.reverse { flex-direction: row-reverse; }
+
+    /* Footer */
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    /* Responsive nav + alt rows */
+    @media(max-width: 768px){
+      nav { display: none; flex-direction: column; background: #111; position: absolute; top: 70px; right: 0; width: 200px; padding: 1rem; }
+      nav.show { display: flex; }
+      .hamburger { display: flex; }
+      .alt-row, .alt-row.reverse { flex-direction: column; }
+      .alt-row img, .alt-text { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>People Power</h1>
+  
+  <nav id="nav">
+    <a href="#campaigns">Campaigns</a>
+    <a href="#events">Latest Events</a>
+    <a href="#involved">Get Involved</a>
+    <a href="#about">About</a>
+  </nav>
+
+  <div class="right-icons">
+    <!-- Profile Icon -->
+    <a href="#profile" title="Profile" class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" 
+           fill="none" viewBox="0 0 24 24" 
+           stroke="currentColor" width="24" height="24">
+        <circle cx="12" cy="8" r="4" stroke-width="2"/>
+        <path stroke-width="2" d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+      </svg>
+    </a>
+
+    <!-- Sign Out Icon -->
+    <a href="#signout" title="Sign Out" class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" 
+           fill="none" viewBox="0 0 24 24" 
+           stroke="currentColor" width="24" height="24">
+        <path stroke-width="2" d="M15 12H3m9-9l-9 9 9 9"/>
+      </svg>
+    </a>
+
+    <!-- Hamburger -->
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+  <section class="hero">
+    <h2>Voices United, Change Ignited</h2>
+    <p>Together we fight for justice, equality, and a better future.</p>
+  </section>
+
+  <section id="campaigns">
+    <h2 class="section-title">Ongoing Campaigns</h2>
+    <div class="alt-row">
+      <img src="https://cdn.i-scmp.com/sites/default/files/styles/1020x680/public/d8/images/canvas/2025/08/22/6b6e27a7-6483-488a-bc76-242b5a136d43_10eae138.jpg?itok=3jYX2dTh&v=1755816785" alt="Climate Justice">
+      <div class="alt-text">
+        <h3>Flood Control Justice</h3>
+        <p>Protecting communities from neglect and inequity by demanding fair infrastructure, disaster preparedness, and resilient systems that safeguard lives, homes, and livelihoods.</p>
+      </div>
+    </div>
+    <div class="alt-row reverse">
+      <img src="https://www.hrw.org/sites/default/files/styles/embed_xxl/public/media_2024/09/202409asia_philippines_workers_rally.jpg?itok=f6CMWG6z" alt="Workers' Rights">
+      <div class="alt-text">
+        <h3>Workers' Rights</h3>
+        <p>Fighting not only for fair wages and safe workplaces, but also for equitable treatment, job security, the right to organize, and the dignity and respect that every laborer deserves across all industries and sectors.</p>
+      </div>
+    </div>
+    <div class="alt-row">
+      <img src="https://scontent.fmnl25-8.fna.fbcdn.net/v/t39.30808-6/542197075_1257333349533436_1983079245820982648_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kiPpl3tVUDYQ7kNvwFzRxeh&_nc_oc=AdnFbh8rw8EacJYXUfAAKwJvhcrQQM4rPeBAtpZ_PPhWSWgPZLWLGKTaGNko_rFqUk8&_nc_zt=23&_nc_ht=scontent.fmnl25-8.fna&_nc_gid=siuChOaz73B5gf-WDbVtWQ&oh=00_AfYUD0p19p0yfKMRFYKFC-WXQbvArYCjFMxK1Z3kr-CycA&oe=68D8747E" alt="Digital Freedom">
+      <div class="alt-text">
+        <h3>Blockchain Governance</h3>
+        <p>Building trust, transparency, and accountability in public institutions through secure, decentralized record-keeping and citizen-centered innovation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <h2 class="section-title">Latest Events</h2>
+    <div class="grid">
+      <a href="https://www.abs-cbn.com/news/nation/2025/9/19/30-000-expected-to-join-trillion-peso-march-on-sunday-organizer-1009" target="_blank" class="card">
+        <img src="https://cdn.presstv.ir/Photo/2023/11/26/f8a6f021-4d1e-4ec9-a9b4-6d85a884d5f9.jpg" alt="3 Trillion Rally">
+        <div class="card-content">
+          <h3>3 Trillion Rally</h3>
+          <small>Sept 21, 2025</small>
+          <p>The massive rally for justice and accountability drew unprecedented numbers, filling the streets with chants and banners of defiance. Over 3 trillion strong voices rose in unison, standing shoulder to shoulder in solidarity and proving that the power of the people cannot be ignored.</p>
+        </div>
+      </a>
+      <a href="https://www.abs-cbn.com/news/nation/2025/9/21/police-say-protesters-arrested-in-mendiola-threw-molotov-bombs-39-cops-hurt-1748" target="_blank" class="card">
+        <img src="https://newsinfo.inquirer.net/wp-content/blogs.dir/10/files/2025/09/riot-mendiola-21sept2025.jpeg" alt="Climate March">
+        <div class="card-content">
+          <h3>Riot at Mediola</h3>
+          <small>Sept 21, 2025</small>
+          <p>The Mendiola protest erupted into chaos as demonstrators clashed with authorities, demanding justice and government accountability. The streets became a battleground of voices, banners, and resistance, symbolizing the people’s refusal to stay silent in the face of abuse.</p>
+        </div>
+      </a>
+      <a href="https://www.abs-cbn.com/news/nation/2025/9/21/manila-police-72-arrested-due-to-violent-acts-during-sept-21-protests-2230" target="_blank" class="card">
+        <img src="https://scontent.fmnl25-8.fna.fbcdn.net/v/t39.30808-6/550655817_1286181940223726_6201745277339843195_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=WkDf1Cdwh-kQ7kNvwFTwZ9d&_nc_oc=Adl8QZidqoSjsg1TtAZGUaxs6sQrUx5W8vS1PGzMRMMtvLq_Typo-oWmDLmbSj7_irI&_nc_zt=23&_nc_ht=scontent.fmnl25-8.fna&_nc_gid=9T_NR8X7Rlk2M0fmvRlOIg&oh=00_AfY3N1Eb_-gk_zMkCPcuFiuOWUFEdeQCENODmZ2-EdpW7g&oe=68D86A09" alt="Workers Solidarity Day">
+        <div class="card-content">
+          <h3>Outrage in Manila</h3>
+          <small>Sept 21, 2025</small>
+          <p>In the heart of Manila, tensions flared as police forces confronted a sea of protesters calling for reform and transparency. The standoff captured the stark contrast between state power and civic defiance, reflecting the deep frustration brewing within the people.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 People Power Movement. All Rights Reserved.</p>
+    <p>Capuyan, Cuison, and Pasion.</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const nav = document.getElementById("nav");
+    hamburger.addEventListener("click", () => {
+      nav.classList.toggle("show");
+    });
+  </script>
+</body>
+</html>
